@@ -29,7 +29,7 @@ agent:
   task_completion_guidance: true
   parallel_tool_call_guidance: true
   environment_probe: false
-  environment_hint: ~/.hermes/profiles/worker-coder/worker-coder_rules.md
+  environment_hint: ~/.hermes/profiles/ops-eval/ops-eval_rules.md
 terminal:
   backend: local
   cwd: ~/hermes-docker-sandbox/workspace
@@ -37,8 +37,8 @@ terminal:
   persistent_shell: true
 compression:
   enabled: true
-  threshold: 0.5
-  target_ratio: 0.2
+  threshold: 0.35
+  target_ratio: 0.15
 memory:
   memory_enabled: true
   user_profile_enabled: true
@@ -50,7 +50,7 @@ kanban:
   max_in_progress_per_profile: 4
   auto_decompose: false
   orchestrator_profile: orchestrator
-  default_assignee: worker-coder
+  default_assignee: ops-eval
 display:
   skin: daylight
   language: zh
@@ -58,6 +58,10 @@ display:
 security:
   redact_secrets: true
   tirith_enabled: true
+  clearances:
+  - TLP:GREEN
+  - TLP:CLEAR
+  - EYES-ONLY:ops
 privacy:
   redact_pii: true
 approvals:
@@ -105,14 +109,11 @@ plugins:
   - run-trace
 extra:
   skills_enabled_by_category:
-  - software-development
   - devops
+  - software-development
   - github
-  - research
-  - data-science
   - mlops
   - autonomous-ai-agents
-  - note-taking
   - productivity
   - mcp
 skills:
@@ -121,6 +122,7 @@ skills:
   - abusing-shadow-credentials-for-privesc
   - achieving-cmmc-level-2-compliance
   - acquiring-disk-image-with-dd-and-dcfldd
+  - ai-music-generation
   - analyzing-active-directory-acl-abuse
   - analyzing-android-malware-with-apktool
   - analyzing-api-gateway-access-logs
@@ -197,10 +199,13 @@ skills:
   - analyzing-windows-prefetch-with-python
   - analyzing-windows-registry-for-artifacts
   - analyzing-windows-shellbag-artifacts
+  - apple-ecosystem
+  - apple-macos
   - apple-notes
   - apple-reminders
   - architecture-diagram
   - ascii-art
+  - ascii-tools
   - ascii-video
   - assessing-vector-and-embedding-weaknesses
   - attacking-entra-id-with-roadtools
@@ -218,6 +223,8 @@ skills:
   - auditing-tls-certificate-transparency-logs
   - auditing-uefi-firmware-with-chipsec
   - automating-ioc-enrichment
+  - baoyu-article-illustrator
+  - baoyu-comic
   - baoyu-infographic
   - benchmarking-kubernetes-with-kube-bench
   - building-adversary-infrastructure-tracking-system
@@ -307,6 +314,7 @@ skills:
   - continuous-llm-red-teaming-with-promptfoo
   - correlating-security-events-in-qradar
   - correlating-threat-campaigns
+  - creative-ideation
   - defending-llms-with-guardrails
   - deobfuscating-javascript-malware
   - deobfuscating-powershell-obfuscated-malware
@@ -481,6 +489,7 @@ skills:
   - hardening-docker-daemon-configuration
   - hardening-linux-endpoint-with-cis-benchmark
   - hardening-windows-endpoint-with-cis-benchmark
+  - heartmula
   - himalaya
   - humanizer
   - hunting-advanced-persistent-threats
@@ -543,76 +552,24 @@ skills:
   - implementing-aws-nitro-enclave-security
   - implementing-aws-security-hub
   - implementing-aws-security-hub-compliance
+  - macos-computer-use
   - manim-video
   - minecraft-modpack-server
+  - music-and-audio
   - openhue
   - p5js
+  - pixel-art
   - pokemon-player
   - popular-web-designs
   - pretext
   - sketch
   - songsee
   - songwriting-and-ai-music
+  - spotify
   - touchdesigner-mcp
+  - xitter
   - xurl
   - youtube-content
-mcp_servers:
-  hermes-studio-api:
-    command: $HOME/.hermes-web-ui/desktop-runtime/hermes/0.19.0/mac-arm64/node/bin/node
-    args:
-    - /Applications/SwarmStudio.app/Contents/Resources/webui/bin/hermes-studio-mcp.mjs
-    - api
-    env:
-      HERMES_WEB_UI_URL: http://127.0.0.1:8748
-      HERMES_WEB_UI_HOME: $HOME/.hermes-web-ui
-      HERMES_WEBUI_STATE_DIR: $HOME/.hermes-web-ui
-      HERMES_WEB_UI_PROFILE: worker-coder
-      HERMES_MCP_SERVER_NAME: hermes-studio-api
-      HERMES_MCP_TOOLSET: api
-      HERMES_WEB_UI_MANAGED_MCP: '1'
-    enabled: true
-  hermes-studio-browser:
-    command: $HOME/.hermes-web-ui/desktop-runtime/hermes/0.19.0/mac-arm64/node/bin/node
-    args:
-    - /Applications/SwarmStudio.app/Contents/Resources/webui/bin/hermes-studio-mcp.mjs
-    - browser
-    env:
-      HERMES_WEB_UI_URL: http://127.0.0.1:8748
-      HERMES_WEB_UI_HOME: $HOME/.hermes-web-ui
-      HERMES_WEBUI_STATE_DIR: $HOME/.hermes-web-ui
-      HERMES_WEB_UI_PROFILE: worker-coder
-      HERMES_MCP_SERVER_NAME: hermes-studio-browser
-      HERMES_MCP_TOOLSET: browser
-      HERMES_WEB_UI_MANAGED_MCP: '1'
-    enabled: true
-  hermes-studio-devices:
-    command: $HOME/.hermes-web-ui/desktop-runtime/hermes/0.19.0/mac-arm64/node/bin/node
-    args:
-    - /Applications/SwarmStudio.app/Contents/Resources/webui/bin/hermes-studio-mcp.mjs
-    - devices
-    env:
-      HERMES_WEB_UI_URL: http://127.0.0.1:8748
-      HERMES_WEB_UI_HOME: $HOME/.hermes-web-ui
-      HERMES_WEBUI_STATE_DIR: $HOME/.hermes-web-ui
-      HERMES_WEB_UI_PROFILE: worker-coder
-      HERMES_MCP_SERVER_NAME: hermes-studio-devices
-      HERMES_MCP_TOOLSET: devices
-      HERMES_WEB_UI_MANAGED_MCP: '1'
-    enabled: true
-  hermes-studio-use:
-    command: $HOME/.hermes-web-ui/desktop-runtime/hermes/0.19.0/mac-arm64/node/bin/node
-    args:
-    - /Applications/SwarmStudio.app/Contents/Resources/webui/bin/hermes-studio-mcp.mjs
-    - use
-    env:
-      HERMES_WEB_UI_URL: http://127.0.0.1:8748
-      HERMES_WEB_UI_HOME: $HOME/.hermes-web-ui
-      HERMES_WEBUI_STATE_DIR: $HOME/.hermes-web-ui
-      HERMES_WEB_UI_PROFILE: worker-coder
-      HERMES_MCP_SERVER_NAME: hermes-studio-use
-      HERMES_MCP_TOOLSET: use
-      HERMES_WEB_UI_MANAGED_MCP: '1'
-    enabled: true
 platform_toolsets:
   cli:
   - browser
@@ -646,3 +603,60 @@ updates:
   backup_keep: 5
   non_interactive_local_changes: stash
 _config_version: 29
+mcp_servers:
+  hermes-studio-api:
+    command: $HOME/.hermes-web-ui/desktop-runtime/hermes/0.19.0/mac-arm64/node/bin/node
+    args:
+    - /Applications/SwarmStudio.app/Contents/Resources/webui/bin/hermes-studio-mcp.mjs
+    - api
+    env:
+      HERMES_WEB_UI_URL: http://127.0.0.1:8748
+      HERMES_WEB_UI_HOME: $HOME/.hermes-web-ui
+      HERMES_WEBUI_STATE_DIR: $HOME/.hermes-web-ui
+      HERMES_WEB_UI_PROFILE: ops-eval
+      HERMES_MCP_SERVER_NAME: hermes-studio-api
+      HERMES_MCP_TOOLSET: api
+      HERMES_WEB_UI_MANAGED_MCP: '1'
+    enabled: true
+  hermes-studio-browser:
+    command: $HOME/.hermes-web-ui/desktop-runtime/hermes/0.19.0/mac-arm64/node/bin/node
+    args:
+    - /Applications/SwarmStudio.app/Contents/Resources/webui/bin/hermes-studio-mcp.mjs
+    - browser
+    env:
+      HERMES_WEB_UI_URL: http://127.0.0.1:8748
+      HERMES_WEB_UI_HOME: $HOME/.hermes-web-ui
+      HERMES_WEBUI_STATE_DIR: $HOME/.hermes-web-ui
+      HERMES_WEB_UI_PROFILE: ops-eval
+      HERMES_MCP_SERVER_NAME: hermes-studio-browser
+      HERMES_MCP_TOOLSET: browser
+      HERMES_WEB_UI_MANAGED_MCP: '1'
+    enabled: true
+  hermes-studio-devices:
+    command: $HOME/.hermes-web-ui/desktop-runtime/hermes/0.19.0/mac-arm64/node/bin/node
+    args:
+    - /Applications/SwarmStudio.app/Contents/Resources/webui/bin/hermes-studio-mcp.mjs
+    - devices
+    env:
+      HERMES_WEB_UI_URL: http://127.0.0.1:8748
+      HERMES_WEB_UI_HOME: $HOME/.hermes-web-ui
+      HERMES_WEBUI_STATE_DIR: $HOME/.hermes-web-ui
+      HERMES_WEB_UI_PROFILE: ops-eval
+      HERMES_MCP_SERVER_NAME: hermes-studio-devices
+      HERMES_MCP_TOOLSET: devices
+      HERMES_WEB_UI_MANAGED_MCP: '1'
+    enabled: true
+  hermes-studio-use:
+    command: $HOME/.hermes-web-ui/desktop-runtime/hermes/0.19.0/mac-arm64/node/bin/node
+    args:
+    - /Applications/SwarmStudio.app/Contents/Resources/webui/bin/hermes-studio-mcp.mjs
+    - use
+    env:
+      HERMES_WEB_UI_URL: http://127.0.0.1:8748
+      HERMES_WEB_UI_HOME: $HOME/.hermes-web-ui
+      HERMES_WEBUI_STATE_DIR: $HOME/.hermes-web-ui
+      HERMES_WEB_UI_PROFILE: ops-eval
+      HERMES_MCP_SERVER_NAME: hermes-studio-use
+      HERMES_MCP_TOOLSET: use
+      HERMES_WEB_UI_MANAGED_MCP: '1'
+    enabled: true
