@@ -31,8 +31,8 @@ ACCOUNT SELECTION and account-scoped blocks.
 
 | Gateway | Port | Account | Binds to |
 |---------|------|---------|----------|
-| main (multiplex) | 8650 | `${WEIXIN_ACCOUNT_ID}` | 爸爸 WeChat `o9cq806MfkZqQbKtl7chOJ4u1vbI@im.wechat` |
-| k12edu (launchd) | 8651 | `d523212ac5ab@im.bot` | 妈妈 WeChat `o9cq80wFMJzzqphQ1ww-1jao0SaI@im.wechat` |
+| main (multiplex) | 8650 | `<main-bot-account-id>@im.bot` | 爸爸 WeChat `o9cq806MfkZqQbKtl7chOJ4u1vbI@im.wechat` |
+| k12edu (launchd) | 8651 | `<k12edu-bot-account-id>@im.bot` | 妈妈 WeChat `<mom-wechat-id>@im.wechat` |
 
 - Account credentials: main under `~/.hermes/weixin/accounts/<id>.json`;
   secondary under `~/.hermes/profiles/<profile>/weixin/accounts/<id>.json`

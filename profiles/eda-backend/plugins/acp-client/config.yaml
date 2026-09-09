@@ -1,0 +1,35 @@
+# ACP Client Plugin Configuration
+# Connects Hermes to external coding agents via ACP (Agent Client Protocol)
+
+# Default provider when none specified
+default_provider: claude
+
+# Default workspace directory for new sessions
+default_cwd: ~/hermes-docker-sandbox/workspace
+
+# Auto-approve all permission requests from agents
+auto_approve: true
+
+# Provider-specific overrides
+providers:
+  opencode:
+    binary: ~/.opencode/bin/opencode
+  codex:
+    npx: npx
+    package: "@zed-industries/codex-acp"
+  claude:
+    # 直接指定 ACP 二进制路径（@zed-industries/claude-code-acp 全局安装）
+    binary: /opt/homebrew/bin/claude-code-acp
+    args: ["--dangerously-skip-permissions"]
+# ZCode (GLM Coding Plan) — 夜间畅用 23:00-09:00(北京) GLM-5.3-Flash 0 额度（活动至 2026-09-20）
+  zcode:
+    binary: /opt/homebrew/bin/zcode-acp-server
+    default_cwd: /Users/YOURNAME/hermes-docker-sandbox/workspace
+    env:
+      ZCODE_MODEL: "GLM-5.3-Flash"   # 钉死 Flash：不钉则 adapter 默认取 models[0]=GLM-5.3（夜间照常扣费）
+# ZCode (GLM Coding Plan) — 夜间畅用 23:00-09:00(北京) GLM-5.3-Flash 0 额度（活动至 2026-09-20）
+  zcode:
+    binary: /opt/homebrew/bin/zcode-acp-server
+    default_cwd: /Users/YOURNAME/hermes-docker-sandbox/workspace
+    env:
+      ZCODE_MODEL: "GLM-5.3-Flash"   # 钉死 Flash：不钉则 adapter 默认取 models[0]=GLM-5.3（夜间照常扣费）

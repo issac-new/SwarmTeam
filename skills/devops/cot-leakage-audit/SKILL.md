@@ -160,7 +160,7 @@ wc -l $TARGET
 
 **清洁版**:
 ```
-orchestrator(端口8650)的微信身份=爸爸(${WEIXIN_ACCOUNT_ID})；k12edu-orchestrator(端口8651)的微信身份=妈妈(d523212ac5ab@im.bot)。
+orchestrator(端口8650)的微信身份=爸爸(<main-bot-account-id>@im.bot)；k12edu-orchestrator(端口8651)的微信身份=妈妈(<k12edu-bot-account-id>@im.bot)。
 ```
 
 ### 示例 2: SOUL.md 规则

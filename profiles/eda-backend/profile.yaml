@@ -1,0 +1,2 @@
+description: "数字后端工程师——综合(Yosys)→floorplan→布局布线(OpenROAD/LibreLane)→CTS→ STA(OpenSTA)→DRC/LVS(Magic/Netgen/KLayout)→GDS signoff包；QoR参数扫描与时序收敛"
+description_auto: false
