@@ -27,9 +27,11 @@ providers:
     default_cwd: /Users/YOURNAME/hermes-docker-sandbox/workspace
     env:
       ZCODE_MODEL: "GLM-5.3-Flash"   # 钉死 Flash：不钉则 adapter 默认取 models[0]=GLM-5.3（夜间照常扣费）
+    model: GLM-5.3-Flash   # L2 会话级钉定（handle_acp_send 新会话 set_config_option，fail-closed）
 # ZCode (GLM Coding Plan) — 夜间畅用 23:00-09:00(北京) GLM-5.3-Flash 0 额度（活动至 2026-09-20）
   zcode:
     binary: /opt/homebrew/bin/zcode-acp-server
     default_cwd: /Users/YOURNAME/hermes-docker-sandbox/workspace
     env:
       ZCODE_MODEL: "GLM-5.3-Flash"   # 钉死 Flash：不钉则 adapter 默认取 models[0]=GLM-5.3（夜间照常扣费）
+    model: GLM-5.3-Flash   # L2 会话级钉定（handle_acp_send 新会话 set_config_option，fail-closed）
