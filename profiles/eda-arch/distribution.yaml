@@ -1,5 +1,5 @@
 name: eda-arch
-version: 3.1.0
+version: 3.2.0
 description: "eda-arch — EDA / IC design automation"
 hermes_requires: ">=0.12.0"
 author: "SwarmTeam"

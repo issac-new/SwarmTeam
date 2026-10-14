@@ -1,6 +1,7 @@
 model:
   default: aim
   provider: custom:cc-switch
+providers: {}
 custom_providers:
   - api_key: PROXY_MANAGED
     api_mode: anthropic_messages
@@ -49,6 +50,7 @@ display:
   skin: daylight
 security:
   redact_secrets: true
+  tirith_enabled: true
 privacy:
   redact_pii: true
 approvals:
@@ -119,12 +121,10 @@ extra:
     - autonomous-ai-agents
     - note-taking
     - productivity
+    - mlops
   skills_pinned:
     - skill-recall
     - eda-platform-development
-skills:
-  disabled:
-    - hf-model-download-china
 mcp_servers:
   ekko-studio-api:
     args:
